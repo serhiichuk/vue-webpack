@@ -1,15 +1,14 @@
 <template>
     <div>
-      <hr>
       <h4>{{msg}}</h4>
-      
+
       <p @click="navigateToHome">Home</p>
-      
-      <ul class="pages-list">
-        <li v-for="(page, key) in pages" :key="key" @click="navigateTo(page.path)">
-         {{page.name}}      
-        </li>
-      </ul>
+
+      <div class="pages-list">
+        <a v-for="(page, key) in pages" :key="key" @click="navigateTo(page.path)">
+         {{page.name}}
+        </a>
+      </div>
 
       <hr>
     </div>
@@ -23,19 +22,19 @@ export default {
   data() {
     return {
       msg: "NavBar",
-      pages: []
+      pages: isEnvDev ? this.$router.options.routes : []
     };
   },
   methods: {
     navigateToHome() {
-      const page = isEnvDev ? "home" : "home";
+      const page = isEnvDev ? "main" : "home";
       this.navigateTo(page);
     },
 
     navigateTo(page) {
       if (isEnvDev) {
         this.$router.push(page);
-        console.log("", page);        
+        console.log("", page);
       } else {
         console.log("navigate to:", page);
       }
@@ -45,11 +44,11 @@ export default {
 </script>
 
 <style scoped>
-ul li {
-  list-style: none;
+a {
+  margin-right: 10px;
   cursor: pointer;
 }
-ul {
-  display: flex;
+
+div {
 }
 </style>

@@ -1,24 +1,23 @@
 <template>
   <div class='app'>
     <nav-bar></nav-bar>
-    
-    <p>slide-1-1</p>
+
     <h4>{{msg}}</h4>
   </div>
 </template>
 
 <script>
-import NavBar from "@/components/NavBar";
+import NavBar from '@/components/NavBar';
 
 export default {
-  name: "Slide__1-1",
-  data() {
-    return {
-      msg: "Welcome to Your Vue.js App"
-    };
-  },
+  name: "Slide__2-1",
   components: {
     NavBar
+  },
+  data() {
+    return {
+      msg: "Flow 2, Slide 1"
+    };
   }
 };
 </script>

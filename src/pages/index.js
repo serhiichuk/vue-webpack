@@ -17,13 +17,11 @@ function getRoutes() {
   }];
 
   files.keys().forEach(key => {
-    if (key === './index.js') return
-
     routes.push({
       name: files(key).default.name,
-      path: `/${files(key).default.name}`,
+      path: `/${files(key).default.__file.split('\\').pop().replace(/\.vue$/, '').toLowerCase()}`,
       component: files(key).default
-    })
+    });
   });
 
   return routes

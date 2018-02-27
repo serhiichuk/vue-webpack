@@ -1,13 +1,13 @@
 <template>
     <div>
-      {{msg}}
+      <h4>{{msg}}</h4>
 
       <div class="pages-list">
         <router-link v-for="(page, key) in pages" :key="key" :to="page.path">
-         {{page.name}}      
+         {{page.name}}
         </router-link>
       </div>
-    
+
     </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   name: "StartPage",
   data() {
     return {
-      msg: "Start Page",
+      msg: "StartPage Here",
       pages: this.$router.options.routes
     };
   }
@@ -28,3 +28,4 @@ export default {
   padding: 4px 8px;
 }
 </style>
+
