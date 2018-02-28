@@ -1,39 +1,33 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Pages from '@/pages'
+
+// Import Components
 import NavBar from "@/components/NavBar";
 
-const isDevEnv = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === 'development';
 
-const router = isDevEnv
+const router = isDevelopment
   ? Pages.getRoutes()
   : false;
 
-const components = {
-  Page: isDevEnv
-    ? () => import('@/App')
-    : () => import('@/pages/0_main/Main'),
-  NavBar
-};
+const Page = isDevelopment
+  ? () => import('@/App')
+  : () => import('@/pages/0_main/Main');
 
-const template = isDevEnv
-  ?
-`<div class='container'>
+const template = `
+<div class='container'>
   <nav-bar/>  
   <page/>
-</div>`
-  :
-`<div class='container'>
-    <nav-bar/>  
-    <page/>
 </div>`;
 
-Vue.config.productionTip = !isDevEnv;
+Vue.config.productionTip = !isDevelopment;
 
 new Vue({
   el: '#app',
+  components: {
+    NavBar,
+    Page
+  },
   router,
-  components,
   template
 });
