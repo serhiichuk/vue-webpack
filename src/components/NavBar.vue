@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="nav-bar">
       <h4>{{msg}}</h4>
 
       <p @click="navigateToHome">Home</p>

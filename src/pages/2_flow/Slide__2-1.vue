@@ -1,19 +1,12 @@
 <template>
   <div class='app'>
-    <nav-bar></nav-bar>
-
     <h4>{{msg}}</h4>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar';
-
 export default {
   name: "Slide__2-1",
-  components: {
-    NavBar
-  },
   data() {
     return {
       msg: "Flow 2, Slide 1"
