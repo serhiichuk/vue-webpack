@@ -12,7 +12,7 @@ const router = isDevelopment
 
 const Page = isDevelopment
   ? () => import('@/App')
-  : () => import('@/pages/0_main/Main');
+  : () => import(`@/${process.env.PAGE_PATH}`);
 
 const template = `
 <div class='container'>

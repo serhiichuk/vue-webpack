@@ -27,7 +27,7 @@ export default {
   },
 
   getPages() {
-    return 'pages'
+    return require.context('./', true, /\.vue$/);
   }
 }
 

@@ -3,39 +3,84 @@ require('./check-versions')();
 
 process.env.NODE_ENV = 'production';
 
-const ora = require('ora');
-const rm = require('rimraf');
+const fsex = require('fs-extra');
 const path = require('path');
+const ora = require('ora');
+// const rm = require('rimraf');
 const chalk = require('chalk');
 const webpack = require('webpack');
+const klawSync = require('klaw-sync');
 const config = require('../config');
 const webpackConfig = require('./webpack.prod.conf');
+const pages = getPages();
 
-const spinner = ora('building for production...');
-spinner.start();
+process.env.BUILD_PAGEsss = 'sdsdsd';
 
-rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
-  if (err) throw err;
-  webpack(webpackConfig, (err, stats) => {
-    spinner.stop();
-    if (err) throw err;
-    process.stdout.write(stats.toString({
-      colors: true,
-      modules: false,
-      children: false, // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
-      chunks: false,
-      chunkModules: false
-    }) + '\n\n');
+(async function () {
+  for (let page of pages) {
+    const slideName = page.path.split(path.sep).pop().split('.')[0];
+    const slidePath = path.join(config.build.assetsRoot, slideName);
+    const pagePathRelativeFromSrc = path.relative(path.resolve(process.cwd(), 'src'), page.path).replace(/(\\)/g, '/');
 
-    if (stats.hasErrors()) {
-      console.log(chalk.red('  Build failed with errors.\n'));
-      process.exit(1)
-    }
+    createSlideDir(slidePath);
+    await webpackBuild(slidePath, pagePathRelativeFromSrc);
+  }
+})();
 
-    console.log(chalk.cyan('  Build complete.\n'));
-    console.log(chalk.yellow(
-      '  Tip: built files are meant to be served over an HTTP server.\n' +
-      '  Opening index.html over file:// won\'t work.\n'
-    ))
-  })
-});
+
+function getPages() {
+  const filter = item => path.extname(item.path) === '.vue';
+
+  try {
+    return klawSync(path.resolve(process.cwd(), 'src', 'pages'), {filter});
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function createSlideDir(slidePath) {
+  fsex.emptyDirSync(slidePath);
+}
+
+function webpackBuild(slidePath, pagePathRelativeFromSrc) {
+  const spinner = ora('building ' + slidePath + ' for production...');
+  spinner.start();
+
+  return new Promise((resolve, reject) => {
+
+    // rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+    //   if (err) throw err;
+
+    const config = webpackConfig({
+      slidePath,
+      pagePathRelativeFromSrc
+    });
+
+    webpack(config, (err, stats) => {
+      spinner.stop();
+      if (err) throw err;
+      process.stdout.write(stats.toString({
+        colors: true,
+        modules: false,
+        children: false, // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
+        chunks: false,
+        chunkModules: false
+      }) + '\n\n');
+
+      if (stats.hasErrors()) {
+        console.log(chalk.red('  Build failed with errors.\n'));
+        process.exit(1)
+      }
+
+      console.log(chalk.cyan('  Build complete.\n'));
+      console.log(chalk.yellow(
+        '  Tip: built files are meant to be served over an HTTP server.\n' +
+        '  Opening index.html over file:// won\'t work.\n'
+      ));
+
+      resolve();
+    })
+  });
+  // })
+}
+
