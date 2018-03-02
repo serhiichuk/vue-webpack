@@ -1,33 +1,30 @@
 import Vue from 'vue'
-import Pages from '@/pages'
-
-// Import Components
-import NavBar from "@/components/NavBar";
+import Router from '../bin/router'
+import NavBar from '@/layouts/NavBar'
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const router = isDevelopment
-  ? Pages.getRoutes()
+  ? Router.getRoutes()
   : false;
 
-const Page = isDevelopment
-  ? () => import('@/App')
-  : () => import(`@/${process.env.PAGE_PATH}`);
+const components = {
+  BuildPage: () => import(`@/${process.env.PAGE_PATH}`),
+  NavBar
+};
 
-const template = `
-<div class='container'>
-  <nav-bar/>  
-  <page/>
+// language=HTML
+const template =
+  `<div class='container'>
+  ${isDevelopment ? '<router-view/>' : '<build-page/>'}
+  <nav-bar/>
 </div>`;
 
 Vue.config.productionTip = !isDevelopment;
 
 new Vue({
   el: '#app',
-  components: {
-    NavBar,
-    Page
-  },
   router,
+  components,
   template
 });

@@ -5,12 +5,12 @@ export default {
   getRoutes() {
     Vue.use(Router);
 
-    const files = require.context('./', true, /\.vue$/);
+    const files = require.context('@/pages', true, /\.vue$/);
     let routes = [{
       path: '/',
-      name: 'StartPage',
+      name: 'DevPage',
       component: () =>
-        import ('@/components/StartPage')
+        import ('@/components/DevPage')
     }];
 
     files.keys().forEach(key => {

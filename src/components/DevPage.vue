@@ -23,9 +23,11 @@ export default {
 };
 </script>
 
-<style scoped>
-.pages-list * {
-  padding: 4px 8px;
+<style lang="scss" scoped>
+.pages-list {
+  * {
+    padding: 4px 8px;
+  }
 }
 </style>
 

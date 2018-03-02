@@ -2,7 +2,7 @@
 const path = require('path');
 const utils = require('./utils');
 const webpack = require('webpack');
-const config = require('../config');
+const config = require('../config/index');
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base.conf');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -14,7 +14,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const env = require('../config/prod.env');
 
 const webpackConfig = (options) => {
-  env.PAGE_PATH = options.pagePathRelativeFromSrc;
+  env.PAGE_PATH = '"'+options.pagePathRelativeFromSrc+'"';
 
   let result = merge(baseWebpackConfig, {
     module: {
@@ -33,9 +33,9 @@ const webpackConfig = (options) => {
     plugins: [
       // http://vuejs.github.io/vue-loader/en/workflow/production.html
       new webpack.DefinePlugin({
-        'process.env': env,
-
+        'process.env': env
       }),
+      // new webpack.EnvironmentPlugin(['PAGE_PATH', options.pagePathRelativeFromSrc]),
       new UglifyJsPlugin({
         uglifyOptions: {
           compress: {
@@ -70,8 +70,8 @@ const webpackConfig = (options) => {
         inject: true,
         minify: {
           removeComments: true,
-          // collapseWhitespace: true,
-          // removeAttributeQuotes: true
+          collapseWhitespace: true,
+          removeAttributeQuotes: true
           // more options:
           // https://github.com/kangax/html-minifier#options-quick-reference
         },
@@ -91,7 +91,7 @@ const webpackConfig = (options) => {
             module.resource &&
             /\.js$/.test(module.resource) &&
             module.resource.indexOf(
-              path.join(__dirname, '../node_modules')
+              path.join(__dirname, '../../node_modules')
             ) === 0
           )
         }
@@ -115,7 +115,7 @@ const webpackConfig = (options) => {
       // copy custom static assets
       new CopyWebpackPlugin([
         {
-          from: path.resolve(__dirname, '../static'),
+          from: path.resolve(__dirname, '../../static'),
           to: config.build.assetsSubDirectory,
           ignore: ['.*']
         }

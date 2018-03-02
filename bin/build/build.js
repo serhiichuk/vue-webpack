@@ -6,15 +6,12 @@ process.env.NODE_ENV = 'production';
 const fsex = require('fs-extra');
 const path = require('path');
 const ora = require('ora');
-// const rm = require('rimraf');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const klawSync = require('klaw-sync');
-const config = require('../config');
+const config = require('../config/index');
 const webpackConfig = require('./webpack.prod.conf');
 const pages = getPages();
-
-process.env.BUILD_PAGEsss = 'sdsdsd';
 
 (async function () {
   for (let page of pages) {
@@ -43,13 +40,10 @@ function createSlideDir(slidePath) {
 }
 
 function webpackBuild(slidePath, pagePathRelativeFromSrc) {
-  const spinner = ora('building ' + slidePath + ' for production...');
+  const spinner = ora('building "@/' + pagePathRelativeFromSrc + '" for production...');
   spinner.start();
 
   return new Promise((resolve, reject) => {
-
-    // rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
-    //   if (err) throw err;
 
     const config = webpackConfig({
       slidePath,
@@ -81,6 +75,5 @@ function webpackBuild(slidePath, pagePathRelativeFromSrc) {
       resolve();
     })
   });
-  // })
 }
 
