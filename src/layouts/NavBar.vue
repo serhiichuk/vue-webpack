@@ -2,13 +2,13 @@
     <div id="nav-bar">
       <h4>{{msg}}</h4>
 
-      <p @click="navigateToHome">Home</p>
+      <!--<p @click="navigateToHome">Home</p>-->
 
-      <div class="pages-list">
-        <a v-for="(page, key) in pages" :key="key" @click="navigateTo(page.path)">
-         {{page.name}}
-        </a>
-      </div>
+      <!--<div class="pages-list">-->
+        <!--<a v-for="(page, key) in pages" :key="key" @click="navigateTo(page.path)">-->
+         <!--{{page.name}}-->
+        <!--</a>-->
+      <!--</div>-->
 
       <hr>
     </div>
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       msg: "NavBar",
-      pages: isEnvDev ? this.$router.options.routes : []
+      // pages: isEnvDev ? this.$router.options.routes : []
     };
   },
   methods: {
