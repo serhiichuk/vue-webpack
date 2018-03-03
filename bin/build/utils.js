@@ -1,6 +1,6 @@
 'use strict'
 const path = require('path')
-const config = require('../config/index')
+const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../../package.json')
 
@@ -60,7 +60,17 @@ exports.cssLoaders = function (options) {
     postcss: generateLoaders(),
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
+    scss: generateLoaders('sass').concat(
+      {
+        loader: 'sass-resources-loader',
+        options: {
+          resources: [
+            path.resolve(process.cwd(), 'src/style/_variables.scss'),
+            path.resolve(process.cwd(), 'src/style/_mixins.scss')
+          ]
+        }
+      }
+    ),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }

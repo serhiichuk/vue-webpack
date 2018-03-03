@@ -1,5 +1,5 @@
 <template>
-    <div class="menu">
+    <div id="menu">
 
       <div @click="toHome">Home</div>
 
@@ -40,10 +40,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  #menu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 
-a {
-  margin-right: 10px;
-  cursor: pointer;
-}
+    width: 100%;
+    height: 60px;
 
+    background-color: $color-accent-1;
+  }
 </style>

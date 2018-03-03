@@ -1,3 +1,11 @@
 {
-  "title": "Main Page"
+  "content": {
+    "title": "Main Page"
+  },
+  "popup": {
+    "ref": [
+      "one",
+      "two"
+    ]
+  }
 }
