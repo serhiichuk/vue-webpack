@@ -4,7 +4,7 @@
 
       <div class="pages-list">
         <router-link v-for="(page, key) in pages" :key="key" :to="page.path">
-         {{page.name}}
+         {{page.path}}
         </router-link>
       </div>
 

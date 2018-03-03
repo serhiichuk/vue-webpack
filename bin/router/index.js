@@ -3,26 +3,21 @@ import Router from 'vue-router'
 
 export default {
   getRoutes() {
-    Vue.use(Router);
-
     const files = require.context('@/pages', true, /\.vue$/);
-    let routes = [{
-      path: '/',
-      name: 'DevPage',
-      component: () =>
-        import ('@/components/DevPage')
-    }];
+    let routes = [{ path: '/', component: () => import ('@/components/development-page')}];
 
     files.keys().forEach(key => {
       routes.push({
-        name: files(key).default.name,
-        path: `/${files(key).default.__file.split('\\').pop().replace(/\.vue$/, '').toLowerCase()}`,
+        path: `/${files(key).default.__file.split('\\').pop().replace(/\.vue$/, '')}`,
         component: files(key).default
       });
     });
 
+    Vue.use(Router);
+
     return new Router({
-      routes
+      mode: 'history',
+      routes: routes
     })
   },
 
