@@ -32,22 +32,23 @@ Vue.use(Router);
 //   }
 // }
 
+const route = (path) => {
+  return {
+    path: path,
+    component: () => import(`@/pages${path}/content`)
+  }
+};
+
 let routes = [];
 
 if (process.env.NODE_ENV === 'development') {
   for (let flow in structure) {
     if (structure[flow].slides) {
       structure[flow].slides.forEach(slide => {
-        routes.push({
-          path: slide.path,
-          component: () => import(`${slide.component}`)
-        })
+        routes.push(route(slide.path))
       });
     } else {
-      routes.push({
-        path: structure[flow].path,
-        component: () => import(`${structure[flow].component}`)
-      })
+      routes.push(route(structure[flow].path))
     }
   }
 } else {
@@ -58,6 +59,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export default new Router({
-      mode: 'history',
-      routes
+  mode: 'history',
+  routes
 });
