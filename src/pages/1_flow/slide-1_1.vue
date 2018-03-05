@@ -1,21 +1,23 @@
 <template>
   <div id="container">
-    <h1 class="title" v-html="text.title"></h1>
+    <h1 class="title" v-html="content.title"></h1>
   </div>
 </template>
 
 <script>
-  import text from './text'
+  import { content, popup } from '@/texts/1_flow/slide-1_1.json'
+
 
   export default {
     data() {
       return {
-        text,
+        content,
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-
+  #container {
+  }
 </style>

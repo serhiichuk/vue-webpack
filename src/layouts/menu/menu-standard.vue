@@ -1,5 +1,5 @@
 <template>
-    <div id="menu">
+    <section id="menu">
 
       <div @click="toHome">Home</div>
 
@@ -9,7 +9,7 @@
         >{{page.path}} </a>
       </div>
 
-    </div>
+    </section>
 </template>
 
 <script>

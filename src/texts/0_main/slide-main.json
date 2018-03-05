@@ -1,0 +1,13 @@
+{
+  "content": {
+    "title": "sl main"
+  },
+
+  "popup": {
+    "ref": [
+      "one",
+      "two"
+    ]
+  }
+}
+

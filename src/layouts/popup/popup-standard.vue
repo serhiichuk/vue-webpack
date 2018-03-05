@@ -1,5 +1,5 @@
 <template>
-  <div id="popup">
+  <section id="popup">
     <h2>Popup</h2>
 
     <ol>
@@ -8,7 +8,7 @@
 
     <!--<button @click="POPUP_SHOW('asd')">Show</button>-->
     <!--<button @click="POPUP_HIDE">Hide</button>-->
-  </div>
+  </section>
 </template>
 
 <script>
@@ -31,6 +31,7 @@
 
 <style scoped>
   #popup {
+    visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;

@@ -1,6 +1,46 @@
 {
-  
-  "flow-1": [
-
-  ]
+  "id_pattern": "test_product_c2_18",
+  "languages": ["ua", "ru"],
+  "structure": {
+    "0_main": {
+      "name": ["Меин Слайд", "Маїн Слайд"],
+      "path": "slide-main",
+      "component": "@/pages/0_main/slide-main",
+      "navigation": {
+        "swipeNext": false,
+        "swipeBack": false
+      }
+    },
+    "1_flow": {
+      "name": "Флоу №1",
+      "slides": [
+        {
+          "name": "Флоу №1 - Слайд №1",
+          "path": "slide-1_1",
+          "component": "@/pages/1_flow/slide-1_1",
+          "navigation": {
+            "swipeNext": "slide-1_3",
+            "swipeBack": false
+          }
+        },
+        {
+          "name": "Флоу №1 - Слайд №2",
+          "path": "slide-1_2",
+          "component": "@/pages/1_flow/slide-1_2",
+          "navigation": {
+            "hidden": true
+          }
+        },
+        {
+          "name": "Флоу №1 - Слайд №3",
+          "path": "slide-1_3",
+          "component": "@/pages/1_flow/slide-1_3",
+          "navigation": {
+            "swipeNext": false,
+            "swipeBack": "slide-1_1"
+          }
+        }
+      ]
+    }
+  }
 }
