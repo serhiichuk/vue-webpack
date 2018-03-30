@@ -1,13 +1,26 @@
 {
   "content": {
-    "title": "sl main"
+    "links": [
+      {
+        "name": "Синдром подразненого кишечника",
+        "id": "slide-1_1"
+      },
+      {
+        "name": "Рефлюксна терапія",
+        "id": "slide-2_1"
+      },
+      {
+        "name": "Сорбент",
+        "id": "slide-3_1"
+      }
+    ]
   },
 
   "popup": {
-    "ref": [
-      "one",
-      "two"
-    ]
+    "references": {
+      "footnotes": [],
+      "links": []
+    }
   }
 }
 

@@ -5,11 +5,11 @@ const config = require('../config/index');
 const vueLoaderConfig = require('./vue-loader.conf');
 
 function resolve(dir) {
-  return path.join(__dirname, '../../', dir)
+  return path.join(process.cwd(), dir)
 }
 
 module.exports = {
-  context: path.resolve(__dirname, '../../'),
+  context: process.cwd(),
   entry: {
     app: './src/main.js',
   },
@@ -24,8 +24,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
-      '~': resolve('bin'),
+      '@': resolve('src')
     }
   },
   module: {
@@ -41,11 +40,25 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          context: 'src/assets',
+          name: utils.assetsPath('[path]/[name].[hash:7].[ext]'),
+          publicPath: process.env.NODE_ENV === 'production' ? '../' : '/'
+        }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'vue-svg-loader',
+        options: {
+          svgo: {
+            plugins: [
+              {removeDoctype: true},
+              {removeComments: true}
+            ]
+          }
         }
       },
       {
@@ -53,15 +66,18 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+          context: 'src/assets',
+          name: utils.assetsPath('[path]/[name].[hash:7].[ext]'),
         }
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test: /\.(woff(2)?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          context: 'src/assets',
+          name: utils.assetsPath('[path]/[name].[ext]'),
+          publicPath: process.env.NODE_ENV === 'production' ? '../' : '/'
         }
       }
     ]

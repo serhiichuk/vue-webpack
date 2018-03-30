@@ -1,5 +1,15 @@
-$width: 1280px;
-$height: 720px;
+$width: 2048px;
+$height: 1536px;
 
-$color-accent-1: #584;
-$color-accent-2: #244;
+$color-accent-1: #052962;
+$color-accent-2: #ed5b1b;
+$color-light-gray: #909397;
+$color-gray: #373737;
+$color-orange: #ffbb18;
+
+$gradient-orange: linear-gradient(to right, rgba(#ffba19, .8) 0%, rgba(#ff8328, .8) 100%);
+$gradient-blue: linear-gradient(94deg, rgba(93, 201, 228, .8) 0%, rgba(93, 201, 228, .8) 3%, rgba(12, 119, 218, .8) 100%);
+$gradient-rose: linear-gradient(to right, rgba(#f25c6e, .8) 0%, rgba(#d92f5b, .8) 100%);
+
+$padding-top: 312px;
+$padding-left: 112px;

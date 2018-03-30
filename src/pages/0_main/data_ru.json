@@ -4,10 +4,10 @@
   },
 
   "popup": {
-    "ref": [
-      "one",
-      "two"
-    ]
+    "references": {
+      "footnotes": [],
+      "links": []
+    }
   }
 }
 

@@ -1,10 +1,11 @@
 <template>
   <div class="development-page">
-    <h4>{{msg}}</h4>
+    <h1 class="title">Development Page</h1>
 
+    <h3>All slides:</h3>
     <div class="pages-list">
-      <router-link v-for="(page, key) in pages" :key="key" :to="page.path">
-        {{page.path}}
+      <router-link v-for="(slide, key) in slides" :key="key" :to="`/${slide.id}`">
+        {{slide.name || slide.id}}
       </router-link>
     </div>
 
@@ -12,20 +13,44 @@
 </template>
 
 <script>
+  import {languages, structure} from '@/structure.json'
+
   export default {
     data() {
       return {
-        msg: "StartPage Here",
-        pages: this.$router.options.routes
-      };
+        slides: structure
+      }
     }
   };
 </script>
 
 <style lang="scss" scoped>
+  .title {
+    margin-top: 5%;
+    color: #259090;
+    text-align: center;
+  }
+
+  h3 {
+    margin: 5% auto 1%;
+    text-align: center;
+    color: #888;
+  }
+
   .pages-list {
+    width: 60%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
     * {
-      padding: 4px 8px;
+      padding: 0.5em 0.25em;
+
+      color: #1e88e5;
+      font-size: 1.4em;
+      font-family: sans-serif;
     }
   }
 </style>

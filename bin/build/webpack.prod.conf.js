@@ -11,10 +11,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const env = require('../config/prod.env');
-
 const webpackConfig = (options) => {
-  env.PAGE_PATH = '"'+options.pagePathRelativeFromSrc+'"';
+  const slidePath = options.SLIDE_PATH || config.build.assetsRoot;
+  const indexName = options.SLIDE_NAME + '.html' || 'index.html';
 
   let result = merge(baseWebpackConfig, {
     module: {
@@ -26,16 +25,15 @@ const webpackConfig = (options) => {
     },
     devtool: config.build.productionSourceMap ? config.build.devtool : false,
     output: {
-      path: options.slidePath,
+      path: slidePath,
       filename: utils.assetsPath('js/[name].[chunkhash].js'),
       chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
     },
     plugins: [
       // http://vuejs.github.io/vue-loader/en/workflow/production.html
       new webpack.DefinePlugin({
-        'process.env': env
+        'process.env': merge(require('../config/prod.env'), envForProd(options))
       }),
-      // new webpack.EnvironmentPlugin(['PAGE_PATH', options.pagePathRelativeFromSrc]),
       new UglifyJsPlugin({
         uglifyOptions: {
           compress: {
@@ -47,7 +45,7 @@ const webpackConfig = (options) => {
       }),
       // extract css into its own file
       new ExtractTextPlugin({
-        filename: utils.assetsPath('css/[name].[contenthash].css'),
+        filename: utils.assetsPath('css/[name].[chunkhash].css'),
         // Setting the following option to `false` will not extract CSS from codesplit chunks.
         // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
         // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
@@ -65,7 +63,7 @@ const webpackConfig = (options) => {
       // you can customize output by editing /index.html
       // see https://github.com/ampedandwired/html-webpack-plugin
       new HtmlWebpackPlugin({
-        filename: path.join(options.slidePath, 'index.html'),
+        filename: path.join(slidePath, indexName),
         template: 'index.html',
         inject: true,
         minify: {
@@ -91,7 +89,7 @@ const webpackConfig = (options) => {
             module.resource &&
             /\.js$/.test(module.resource) &&
             module.resource.indexOf(
-              path.join(__dirname, '../../node_modules')
+              path.join(process.cwd(), 'node_modules')
             ) === 0
           )
         }
@@ -115,7 +113,7 @@ const webpackConfig = (options) => {
   });
 
   if (config.build.productionGzip) {
-    const CompressionWebpackPlugin = require('compression-webpack-plugin')
+    const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
     result.plugins.push(
       new CompressionWebpackPlugin({
@@ -139,5 +137,12 @@ const webpackConfig = (options) => {
 
   return result;
 };
+
+function envForProd(options) {
+  for (let key in options) {
+    options[key] = '"' + options[key] + '"';
+  }
+  return options;
+}
 
 module.exports = webpackConfig;

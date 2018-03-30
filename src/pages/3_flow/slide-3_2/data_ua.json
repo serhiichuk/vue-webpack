@@ -1,0 +1,34 @@
+{
+  "content": {
+    "title": "Потрійний механізм дії препарату <b>СМЕКТА<sup>®</sup></b>",
+    "info": [
+      {
+        "name": "Потужна селективна адсорбція",
+        "desc": "<p>завдяки <b>унікальній структурі молекули<sup>1,2</sup></b></p>зв'язує та виводить продукти життєдіяльності гельмінтів та їх токсини."
+      },
+      {
+        "name": "Мукоцитопротекція",
+        "desc": "покращує кількісні та якісні характеристики слизу в кишечнику3, прискорює відновлення слизової оболонки4, перешкоджає агресивній дії мікроорганізмів"
+      },
+      {
+        "name": "Зменшення болю<sup>5</sup>"
+      }
+    ]
+  },
+
+  "popup": {
+    "references": {
+      "links": [
+        "Guarino A et al., Exp Opin Drug Metab Toxicol 2009; 5: 433-440",
+        "Grim RE. Applied clay mineralogy. McGray-Hill, London, 1968: 51-55",
+        "Droy M.T., Rev.Inst.Pasteur, 1986; Rateau J.G.Cur.Med.Res.Opl, 1982",
+        "Albengres E, et al. Interactions between smectite, a mucus stabilizer, and acid and basic drugs. In vitro and in vivo studies. Eur J Clin Pharmacol 1985; 28:601-5",
+        "Chang F-Y et al., J Gastroenterol Hepatol. 2007 Dec; 22(12): 2266-72"
+      ]
+    }
+  }
+}
+
+
+
+

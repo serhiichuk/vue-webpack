@@ -6,7 +6,7 @@ import store from './app/store'
 import router from './app/router'
 
 // Disable dev-tools extension in production
-// Vue.config.productionTip = process.env.NODE_ENV === 'production';
+Vue.config.productionTip = process.env.NODE_ENV === 'production';
 
 new Vue({
   el: '#app',

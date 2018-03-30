@@ -7,11 +7,11 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config bin/build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node bin/build/build.js"
+    "build": "node bin/build/build.js",
+    "build:PM": "node bin/build/build-pharma-touch.js"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "global": "^4.3.2",
+    "gsap": "^1.20.4",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -54,6 +54,7 @@
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
+    "vue-svg-loader": "^0.5.0",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
