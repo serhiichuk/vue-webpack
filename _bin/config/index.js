@@ -5,20 +5,10 @@
 const path = require('path');
 
 module.exports = {
-  paths: {
-    bin: path.join(process.cwd(), 'bin'),
-    defaultTemplate: {
-      content: path.join(process.cwd(), 'bin', 'default-template', 'content.vue'),
-      data: path.join(process.cwd(), 'bin', 'default-template', 'data.json'),
-    },
-    src: path.join(process.cwd(), 'src'),
-    structure: path.join(process.cwd(), 'src', 'structure')
-  },
-
   dev: {
     // Paths
     assetsSubDirectory: '',
-    assetsPublicPath: '',
+    assetsPublicPath: '/',
     proxyTable: {},
 
     // Various Dev Server settings
@@ -50,6 +40,7 @@ module.exports = {
     assetsRoot: path.resolve(process.cwd(), 'dist'),
     assetsSubDirectory: '',
     assetsPublicPath: '',
+    srcRoot: path.join(process.cwd(), 'src'),
 
     /**
      * Source Maps

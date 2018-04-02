@@ -5,13 +5,12 @@
   "author": "Taras <tarasserhiytschuk@gmail.com>",
   "private": false,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config bin/build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config bin/config/webpack/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node bin/build/build.js",
+    "generate": "node bin/generate/generate.js",
     "build:PM": "node bin/build/build-pharma-touch.js"
   },
   "dependencies": {
-    "gsap": "^1.20.4",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -26,7 +25,7 @@
     "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
-    "chalk": "^2.0.1",
+    "chalk": "^2.3.2",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^3.0.0",

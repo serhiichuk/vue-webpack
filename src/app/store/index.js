@@ -1,44 +1,48 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import StructureParser from '@/app/utils/structure-parser'
+import {languages} from '@/structure.json'
 
 Vue.use(Vuex);
 
 const state = {
-  languages: [],
-  activeLanguage: '',
-
-  allSlidesList: [],
-  currentSlide: '',
-  currentFlow: '',
-  currentFlowList: [],
-
-  activePopup: '',
-  dataPopup: {},
-
-  t: {}
+  languages,
+  currentLang: sessionStorage.getItem('clm-language') || languages[0],
+  data: {},
+  slides: [],
+  currentSlide: {},
+  currentFlow: [],
+  activePopup: ''
 };
 
 const mutations = {
-  INIT_SLIDE_PARAMS(state, options) {
-    for (let key in options) {
-      state[key] = options[key]
-    }
-  },
-
   SET_LANG(state, lang) {
-    if (state.languages.indexOf(lang) !== -1) {
-      state.activeLanguage = lang
+    if (state.languages.indexOf(lang) === -1 && process.env.NODE_ENV === 'development') {
+      console.warn(`Not find lang: "${lang}" in project languages: "${state.languages}"`)
     } else {
-      console.warn(`Not find lang: "${lang}" in project languages: "${state.activeLanguage.toString()}"`)
+      state.currentLang= lang;
+      sessionStorage.setItem('clm-language', lang)
     }
   },
 
-  SET_POPUP_DATA(state, payload) {
-    state.dataPopup = payload
+  SET_DATA(state, data) {
+    state.data = data;
   },
 
-  POPUP_SHOW(state, payload) {
-    state.activePopup = payload;
+  SET_ALL_SLIDES(state, slides) {
+    state.slides = slides;
+  },
+
+  SET_CURRENT_SLIDE(state, currentSlide) {
+    state.currentSlide = currentSlide;
+  },
+
+  SET_CURRENT_FLOW(state, currentFlow) {
+    state.currentFlow = currentFlow;
+  },
+
+  POPUP_SHOW(state, popupName) {
+    state.activePopup = popupName;
   },
 
   POPUP_HIDE(state) {
@@ -46,8 +50,26 @@ const mutations = {
   }
 };
 
+const actions = {
+  async init({commit}, currentSlideId) {
+    const structure = new StructureParser(currentSlideId);
+    // const data = {};
+    //
+    // for (let lang of languages) {
+    //     data[lang] = await import(`@/${structure.currentSlide.path}/data_${lang}`)
+    // }
+    //
+    // commit('SET_DATA', data);
+    commit('SET_ALL_SLIDES', structure.slides);
+    commit('SET_CURRENT_SLIDE', structure.currentSlide);
+    commit('SET_CURRENT_FLOW', structure.currentFlow);
+  }
+};
+
+
 export default new Vuex.Store({
   state,
   mutations,
+  actions,
   strict: process.env.NODE_ENV !== 'production',
 })

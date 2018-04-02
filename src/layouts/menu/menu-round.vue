@@ -30,11 +30,7 @@
 
 <script>
   import {mapMutations, mapState} from 'vuex'
-  import {navigation} from '@/app/mixins'
-
   import {menu} from '@/components/svg-icons'
-  import TimelineMax from 'gsap/TimelineMax';
-  import "gsap/TweenMax";
 
   export default {
     name: "menu-round",

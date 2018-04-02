@@ -1,95 +1,31 @@
 {
+  "idPattern": "DEF_C1_18",
   "languages": ["ua", "ru"],
   "structure": [
     {
-      "id": "slide--main",
+      "id": "DEF_C1_18--slide-main",
       "name": "",
-      "path": "pages/0_main"
+      "path": "slides/slide-main"
     },
     {
-      "id": "slide--faq_1",
+      "id": "DEF_C1_18--slide-faq_1",
       "name": "faq.1",
-      "path": "pages/faq/slide-faq_1"
+      "path": "slides/faq/slide-faq_1"
     },
     {
-      "id": "slide--faq_2",
+      "id": "DEF_C1_18--slide-faq_2",
       "name": "faq.2",
-      "path": "pages/faq/slide-faq_2"
+      "path": "slides/faq/slide-faq_2"
     },
     {
-      "id": "slide--1_1",
+      "id": "DEF_C1_18--slide-1_1",
       "name": "1.1",
-      "path": "pages/1_flow/slide-1_1"
+      "path": "slides/flow-1/slide-1_1"
     },
     {
-      "id": "slide--1_2",
+      "id": "DEF_C1_18--slide-1_2",
       "name": "1.2",
-      "path": "pages/1_flow/slide-1_2"
-    },
-    {
-      "id": "slide--1_3",
-      "name": "1.3",
-      "path": "pages/1_flow/slide-1_3"
-    },
-    {
-      "id": "slide--1_4",
-      "name": "1.4",
-      "path": "pages/1_flow/slide-1_4"
-    },
-    {
-      "id": "slide--1_5",
-      "name": "1.5",
-      "path": "pages/1_flow/slide-1_5"
-    },
-    {
-      "id": "slide--2_1",
-      "name": "2.1",
-      "path": "pages/2_flow/slide-2_1"
-    },
-    {
-      "id": "slide--2_2",
-      "name": "2.2",
-      "path": "pages/2_flow/slide-2_2"
-    },
-    {
-      "id": "slide--2_3",
-      "name": "2.3",
-      "path": "pages/2_flow/slide-2_3"
-    },
-    {
-      "id": "slide--2_4",
-      "name": "2.4",
-      "path": "pages/2_flow/slide-2_4"
-    },
-    {
-      "id": "slide--2_5",
-      "name": "2.5",
-      "path": "pages/2_flow/slide-2_5"
-    },
-    {
-      "id": "slide--3_1",
-      "name": "3.1",
-      "path": "pages/3_flow/slide-3_1"
-    },
-    {
-      "id": "slide--3_2",
-      "name": "3.2",
-      "path": "pages/3_flow/slide-3_2"
-    },
-    {
-      "id": "slide--3_3",
-      "name": "3.3",
-      "path": "pages/3_flow/slide-3_3"
-    },
-    {
-      "id": "slide--3_4",
-      "name": "3.4",
-      "path": "pages/3_flow/slide-3_4"
-    },
-    {
-      "id": "slide--3_5",
-      "name": "3.5",
-      "path": "pages/3_flow/slide-3_5"
+      "path": "slides/flow-1/slide-1_2"
     }
   ]
 }

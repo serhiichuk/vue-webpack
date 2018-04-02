@@ -1,24 +1,24 @@
-#!/usr/bin/env node
+'use strict';
 process.env.NODE_ENV = 'production';
 
+const fsex = require('fs-extra');
+const path = require('path');
 const ora = require('ora');
 const chalk = require('chalk');
 const webpack = require('webpack');
-const config = require('../config');
-const webpackConfig = require('../config/webpack/webpack.prod.conf');
-const slides = require(config.paths.structure).structure;
+const config = require('../config/index');
+const webpackConfig = require('./webpack.prod.conf');
+const pages = getPagesPath();
 
 // Main loop around all pages
 (async function () {
-  for (let slide of slides) {
+  for (let page of pages) {
     const env = {
-      BUILD_PATH: slide.path,
-      SLIDE_NAME: slide.id
+      BUILD_PATH: page,
+      SLIDE_NAME: getSlideName(page)
     };
 
-
-    console.log(env);
-    // await webpackBuild(env);
+    await webpackBuild(env);
   }
 })();
 
@@ -59,3 +59,26 @@ function webpackBuild(env) {
   });
 }
 
+function getSlideName(pagePath) {
+  return pagePath.split('/').splice(-2, 1).join();
+}
+
+function getPagesPath() {
+  const pages = [];
+  const structure = require('../../src/structure').structure;
+
+
+  for (let flow in structure) {
+    if (structure[flow].slides) {
+      structure[flow].slides.forEach(slide => {
+        pages.push(slide.path)
+      });
+    } else {
+      pages.push(structure[flow].path)
+    }
+  }
+
+  return pages;
+}
+
+/** Thumbs **/
