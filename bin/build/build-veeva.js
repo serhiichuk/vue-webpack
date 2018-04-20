@@ -10,16 +10,14 @@ module.exports = () => {
   return new Promise(resolve => {
     (async () => {
       for (let slide of clmConfig.structure) {
-
         const params = {};
-        params.clm = 'pharma-touch';
+        params.clm = 'veeva';
         params.slideName = slide.id;
-
         params.env = {
-          CLM_NAME: 'pharma-touch',
+          CLM_NAME: params.clm,
           BUILD_PATH: slide.path,
-          SLIDE_NAME: slide.id,
-          SLIDE_PATH: path.join(config.build.assetsRoot, params.clm)
+          SLIDE_NAME: `${clmConfig.idPattern}--${slide.id}`,
+          SLIDE_PATH: path.join(config.build.assetsRoot, params.clm, `${clmConfig.idPattern}--${slide.id}`)
         };
 
         /** Webpack Build **/
@@ -30,9 +28,19 @@ module.exports = () => {
           .ignoreAspectRatio();
 
         screen
-          .resize(300, 225)
-          .toFile(path.join(params.env.SLIDE_PATH, `${params.slideName}.jpg`))
-          .catch(err => {console.log(err)});
+          .resize(849, 637)
+          .toFile(path.join(params.env.SLIDE_PATH, `${params.env.SLIDE_NAME}-full.png`))
+          .catch(err => {
+            console.log(err)
+          });
+
+        screen
+          .resize(200, 150)
+          .toFile(path.join(params.env.SLIDE_PATH, `${params.env.SLIDE_NAME}-thumb.png`))
+          .catch(err => {
+            console.log(err)
+          });
+
       }
 
       /** Build Complete **/

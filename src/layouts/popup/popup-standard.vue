@@ -23,11 +23,9 @@
 
 <script>
   import {mapState, mapMutations} from 'vuex'
-  import {global as globalIcons} from '@/components/svg-icons'
 
   export default {
     components: {
-      iconClose: globalIcons.close
     },
 
     computed: {
@@ -56,273 +54,273 @@
   };
 </script>
 
-<style lang="scss" scoped>
-  #popup {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
+<!--<style lang="scss" scoped>-->
+  <!--#popup {-->
+    <!--visibility: hidden;-->
+    <!--position: absolute;-->
+    <!--top: 0;-->
+    <!--left: 0;-->
 
-    width: 100%;
-    height: 100%;
+    <!--width: 100%;-->
+    <!--height: 100%;-->
 
-    @include flexCentered;
+    <!--@include flexCentered;-->
 
-    background-color: rgba(17, 29, 48, 0.0);
-    transition: background-color .5s, visibility .5s;
+    <!--background-color: rgba(17, 29, 48, 0.0);-->
+    <!--transition: background-color .5s, visibility .5s;-->
 
-    &.active {
-      visibility: visible;
-      background-color: rgba(17, 29, 48, 0.6);
-    }
-  }
+    <!--&.active {-->
+      <!--visibility: visible;-->
+      <!--background-color: rgba(17, 29, 48, 0.6);-->
+    <!--}-->
+  <!--}-->
 
-  .show-enter-active, .show-leave-active {
-    transition: opacity .4s, transform .4s;
-  }
+  <!--.show-enter-active, .show-leave-active {-->
+    <!--transition: opacity .4s, transform .4s;-->
+  <!--}-->
 
-  .show-enter, .show-leave-to {
-    opacity: 0;
-    transform: scale(.8)
-  }
+  <!--.show-enter, .show-leave-to {-->
+    <!--opacity: 0;-->
+    <!--transform: scale(.8)-->
+  <!--}-->
 
-  .show-enter-to, .show-leave {
-    opacity: 1;
-    transform: scale(1)
-  }
+  <!--.show-enter-to, .show-leave {-->
+    <!--opacity: 1;-->
+    <!--transform: scale(1)-->
+  <!--}-->
 
-  .popup-content {
-    position: relative;
-    background-color: white;
-    border-radius: 40px;
-    box-shadow: 8.9px 9.5px 90px rgba(15, 22, 32, 0.56);
+  <!--.popup-content {-->
+    <!--position: relative;-->
+    <!--background-color: white;-->
+    <!--border-radius: 40px;-->
+    <!--box-shadow: 8.9px 9.5px 90px rgba(15, 22, 32, 0.56);-->
 
-    font-size: 28px;
-  }
+    <!--font-size: 28px;-->
+  <!--}-->
 
-  .btn-popup-hide {
-    position: absolute;
-    right: 25px;
-    top: 25px;
-    z-index: 2;
+  <!--.btn-popup-hide {-->
+    <!--position: absolute;-->
+    <!--right: 25px;-->
+    <!--top: 25px;-->
+    <!--z-index: 2;-->
 
-    width: 100px;
-    height: 100px;
+    <!--width: 100px;-->
+    <!--height: 100px;-->
 
-    svg {
-      width: 45px;
-      height: 45px;
+    <!--svg {-->
+      <!--width: 45px;-->
+      <!--height: 45px;-->
 
-      stroke: $color-accent-1;
-      stroke-linecap: round;
-    }
+      <!--stroke: $color-accent-1;-->
+      <!--stroke-linecap: round;-->
+    <!--}-->
 
-    &:active {
-      background-color: rgba($color-accent-1, .2);
-      svg {
-        stroke: $color-accent-2;
-      }
-    }
-  }
+    <!--&:active {-->
+      <!--background-color: rgba($color-accent-1, .2);-->
+      <!--svg {-->
+        <!--stroke: $color-accent-2;-->
+      <!--}-->
+    <!--}-->
+  <!--}-->
 
-  .title {
-    margin: initial;
-    padding: initial;
+  <!--.title {-->
+    <!--margin: initial;-->
+    <!--padding: initial;-->
 
-    width: initial;
+    <!--width: initial;-->
 
-    font-weight: bold;
-    font-size: 28px;
-  }
+    <!--font-weight: bold;-->
+    <!--font-size: 28px;-->
+  <!--}-->
 
-  .links {
-    font-size: 28px;
+  <!--.links {-->
+    <!--font-size: 28px;-->
 
-    div {
-      counter-increment: index;
-      position: relative;
+    <!--div {-->
+      <!--counter-increment: index;-->
+      <!--position: relative;-->
 
-      margin: 20px 0;
-      margin-left: 15px;
+      <!--margin: 20px 0;-->
+      <!--margin-left: 15px;-->
 
-      &:before {
-        content: counter(index) '.';
+      <!--&:before {-->
+        <!--content: counter(index) '.';-->
 
-        position: absolute;
-        top: 0;
-        left: -50px;
+        <!--position: absolute;-->
+        <!--top: 0;-->
+        <!--left: -50px;-->
 
-        width: 50px;
-        height: 30px;
+        <!--width: 50px;-->
+        <!--height: 30px;-->
 
-        @include flexCentered;
+        <!--@include flexCentered;-->
 
-        font-weight: bold;
-      }
-    }
-  }
+        <!--font-weight: bold;-->
+      <!--}-->
+    <!--}-->
+  <!--}-->
 
-  .content {
-    font-size: 26px;
+  <!--.content {-->
+    <!--font-size: 26px;-->
 
-    > div {
-      margin: 25px 0;
-    }
-  }
+    <!--&gt; div {-->
+      <!--margin: 25px 0;-->
+    <!--}-->
+  <!--}-->
 
-  .footnotes {
-    > div {
-      position: relative;
-      margin-left: 15px;
+  <!--.footnotes {-->
+    <!--&gt; div {-->
+      <!--position: relative;-->
+      <!--margin-left: 15px;-->
 
-      /deep/ span {
-        position: absolute;
-        top: 0;
-        left: -25px;
+      <!--/deep/ span {-->
+        <!--position: absolute;-->
+        <!--top: 0;-->
+        <!--left: -25px;-->
 
-        font-size: 1.4em;
-      }
-    }
-  }
+        <!--font-size: 1.4em;-->
+      <!--}-->
+    <!--}-->
+  <!--}-->
 
-  .popup-references, .popup-research-design {
-    padding: 85px 140px;
-    width: 1200px;
-  }
+  <!--.popup-references, .popup-research-design {-->
+    <!--padding: 85px 140px;-->
+    <!--width: 1200px;-->
+  <!--}-->
 
-  // Absorption Popup
-  .popup-absorption {
-    width: 1823px;
-    height: 1175px;
+  <!--// Absorption Popup-->
+  <!--.popup-absorption {-->
+    <!--width: 1823px;-->
+    <!--height: 1175px;-->
 
-    background-image: url(../../assets/img/slide-1_2/popup-absorption-bg.png);
-    background-position: center 90px;
-    background-repeat: no-repeat;
+    <!--background-image: url(../../assets/media/images/slide-1_2/popup-absorption-bg.png);-->
+    <!--background-position: center 90px;-->
+    <!--background-repeat: no-repeat;-->
 
-    .title {
-      position: absolute;
-      top: 90px;
-      left: 0;
-      width: 100%;
+    <!--.title {-->
+      <!--position: absolute;-->
+      <!--top: 90px;-->
+      <!--left: 0;-->
+      <!--width: 100%;-->
 
-      font-size: 38px;
-      font-weight: normal;
-      text-align: center;
+      <!--font-size: 38px;-->
+      <!--font-weight: normal;-->
+      <!--text-align: center;-->
 
-      /deep/ span {
-        font-size: 52px;
-        text-transform: uppercase;
-      }
-    }
+      <!--/deep/ span {-->
+        <!--font-size: 52px;-->
+        <!--text-transform: uppercase;-->
+      <!--}-->
+    <!--}-->
 
-    .info > div {
-      position: absolute;
-      width: 320px;
+    <!--.info > div {-->
+      <!--position: absolute;-->
+      <!--width: 320px;-->
 
-      font-weight: bold;
-      font-size: 38px;
-    }
-  }
+      <!--font-weight: bold;-->
+      <!--font-size: 38px;-->
+    <!--}-->
+  <!--}-->
 
-  .slide-1_2 {
-    &.popup-absorption {
-      background-image: url(../../assets/img/slide-1_2/popup-absorption-bg.png);
+  <!--.slide-1_2 {-->
+    <!--&.popup-absorption {-->
+      <!--background-image: url(../../assets/media/images/slide-1_2/popup-absorption-bg.png);-->
 
-      .info {
-        &-1 {
-          top: 768px;
-          left: 191px;
-        }
+      <!--.info {-->
+        <!--&-1 {-->
+          <!--top: 768px;-->
+          <!--left: 191px;-->
+        <!--}-->
 
-        &-2 {
-          top: 967px;
-          left: 751px;
-        }
+        <!--&-2 {-->
+          <!--top: 967px;-->
+          <!--left: 751px;-->
+        <!--}-->
 
-        &-3 {
-          top: 768px;
-          left: 1367px;
-        }
-      }
-    }
-  }
+        <!--&-3 {-->
+          <!--top: 768px;-->
+          <!--left: 1367px;-->
+        <!--}-->
+      <!--}-->
+    <!--}-->
+  <!--}-->
 
-  .slide-1_3, .slide-3_4 {
-    &.popup-absorption {
-      background-image: url(../../assets/img/slide-3_4/popup-absorption-bg.png);
-      background-position-y: 130px;
+  <!--.slide-1_3, .slide-3_4 {-->
+    <!--&.popup-absorption {-->
+      <!--background-image: url(../../assets/media/images/slide-3_4/popup-absorption-bg.png);-->
+      <!--background-position-y: 130px;-->
 
-      .info {
-        > div {
-          position: absolute;
-          width: 315px;
-          margin: 0;
+      <!--.info {-->
+        <!--&gt; div {-->
+          <!--position: absolute;-->
+          <!--width: 315px;-->
+          <!--margin: 0;-->
 
-          font-size: 30px;
-          font-weight: 600;
+          <!--font-size: 30px;-->
+          <!--font-weight: 600;-->
 
-          counter-increment: index;
+          <!--counter-increment: index;-->
 
-          &:before {
-            content: counter(index);
-            position: absolute;
-            top: 0;
-            left: -100px;
+          <!--&:before {-->
+            <!--content: counter(index);-->
+            <!--position: absolute;-->
+            <!--top: 0;-->
+            <!--left: -100px;-->
 
-            width: 76px;
-            height: 76px;
+            <!--width: 76px;-->
+            <!--height: 76px;-->
 
-            display: table-cell;
-            text-align: center;
-            vertical-align: middle;
+            <!--display: table-cell;-->
+            <!--text-align: center;-->
+            <!--vertical-align: middle;-->
 
-            font-size: 55px;
-            color: #fff;
+            <!--font-size: 55px;-->
+            <!--color: #fff;-->
 
-            font-weight: normal;
-            border-radius: 50%;
-            background-image: $gradient-rose;
+            <!--font-weight: normal;-->
+            <!--border-radius: 50%;-->
+            <!--background-image: $gradient-rose;-->
 
-          }
-        }
+          <!--}-->
+        <!--}-->
 
-        &-1 {
-          top: 760px;
-          left: 218px;
-        }
+        <!--&-1 {-->
+          <!--top: 760px;-->
+          <!--left: 218px;-->
+        <!--}-->
 
-        &-2 {
-          top: 1006px;
-          left: 762px;
-        }
+        <!--&-2 {-->
+          <!--top: 1006px;-->
+          <!--left: 762px;-->
+        <!--}-->
 
-        &-3 {
-          top: 763px;
-          left: 1360px;
-        }
+        <!--&-3 {-->
+          <!--top: 763px;-->
+          <!--left: 1360px;-->
+        <!--}-->
 
-        /deep/ p {
-          font-weight: normal;
-          font-size: 26px;
-        }
-      }
+        <!--/deep/ p {-->
+          <!--font-weight: normal;-->
+          <!--font-size: 26px;-->
+        <!--}-->
+      <!--}-->
 
-      .legend {
-        > div {
-          position: absolute;
-          top: 670px;
+      <!--.legend {-->
+        <!--&gt; div {-->
+          <!--position: absolute;-->
+          <!--top: 670px;-->
 
-          font-size: 24px;
-        }
-        &-1 {
-          left: 500px;
-        }
+          <!--font-size: 24px;-->
+        <!--}-->
+        <!--&-1 {-->
+          <!--left: 500px;-->
+        <!--}-->
 
-        &-2 {
-          left: 1120px;
-        }
-      }
-    }
-  }
+        <!--&-2 {-->
+          <!--left: 1120px;-->
+        <!--}-->
+      <!--}-->
+    <!--}-->
+  <!--}-->
 
-</style>
+<!--</style>-->

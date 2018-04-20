@@ -1,7 +1,12 @@
-import {languages, structure} from '@/structure.json'
+import {structure} from '@/clm.config'
 
 export default class {
   constructor(currentSlideId = '') {
+    currentSlideId = process.env.NODE_ENV === 'development'
+      ? currentSlideId
+      : process.env.SLIDE_NAME.split('--').slice(-1).toString();
+
+
     this.currentSlide = {};
     this.currentFlow = [];
     this.slides = [];
@@ -27,14 +32,16 @@ export default class {
   }
 
   getSlideEl(sl) {
-    return {
-      id: sl.id,
-      name: sl.name,
-      path: sl.path
+    const result = {};
+
+    for (let key in sl) {
+      if (sl[key]) result[key] = sl[key]
     }
+
+    return result
   }
 
-  // SOME_PREP_C1_18--slide_1_2 - will return: slide_1
+  // SOME_PREP_C1_18--slide_1_2 - will return: slide_1_2
   // _________________↑↑↑↑↑↑↑↑__
   // SOME_PREP_C1_18--slide_main - will return: slide_main
   // _________________↑↑↑↑↑↑↑↑↑↑↑↑

@@ -80,6 +80,10 @@ const webpackConfig = (options) => {
       new webpack.HashedModuleIdsPlugin(),
       // enable scope hoisting
       new webpack.optimize.ModuleConcatenationPlugin(),
+      // Minimum number of characters
+      new webpack.optimize.MinChunkSizePlugin({
+        minChunkSize: 10000
+      }),
       // split vendor js into its own file
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
@@ -98,7 +102,7 @@ const webpackConfig = (options) => {
       // prevent vendor hash from being updated whenever app bundle is updated
       new webpack.optimize.CommonsChunkPlugin({
         name: 'manifest',
-        minChunks: Infinity
+        minChunks: Infinity,
       }),
       // This instance extracts shared chunks from code splitted chunks and bundles them
       // in a separate chunk, similar to the vendor chunk
@@ -139,10 +143,11 @@ const webpackConfig = (options) => {
 };
 
 function envForProd(options) {
+  const env = {};
   for (let key in options) {
-    options[key] = '"' + options[key] + '"';
+    env[key] = '"' + options[key] + '"';
   }
-  return options;
+  return env;
 }
 
 module.exports = webpackConfig;

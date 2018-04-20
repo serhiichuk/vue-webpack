@@ -1,6 +1,6 @@
 <template>
-  <div class="development-page">
-    <h1 class="title">Development Page</h1>
+  <div id="development-page">
+    <h1 class="dev-title">Development Page</h1>
 
     <h3>All slides:</h3>
     <div class="pages-list">
@@ -13,40 +13,62 @@
 </template>
 
 <script>
-  import {languages, structure} from '@/structure.json'
+  import {languages, structure} from '@/clm.config'
 
   export default {
     data() {
       return {
-        slides: structure
+        slides: structure,
       }
     }
   };
 </script>
 
 <style lang="scss" scoped>
-  .title {
+
+  #development-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 10000;
+
+    background-color: rgb(232, 232, 232);
+  }
+
+  .dev-title {
     margin-top: 5%;
     color: #259090;
     text-align: center;
   }
 
   h3 {
-    margin: 5% auto 1%;
+    margin: 2.5% auto;
     text-align: center;
     color: #888;
   }
 
   .pages-list {
-    width: 60%;
-    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+
+    max-height: 80%;
+    height: 40%;
+    /*bottom: 10%;*/
 
     display: flex;
-    justify-content: center;
+    flex-flow: column;
     flex-wrap: wrap;
+    /*justify-content: center;*/
+    align-items: center;
 
     * {
-      padding: 0.5em 0.25em;
+      padding: 0.25em;
 
       color: #1e88e5;
       font-size: 1.4em;

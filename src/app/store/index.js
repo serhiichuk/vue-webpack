@@ -1,26 +1,33 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {languages} from '@/clm.config'
 import StructureParser from '@/app/utils/structure-parser'
-import {languages} from '@/structure.json'
+import dataTemplate from '../../../bin/default-template/data'
 
 Vue.use(Vuex);
 
 const state = {
   languages,
-  currentLang: sessionStorage.getItem('clm-language') || languages[0],
+  currentLang: sessionStorage.getItem('clm-lang') || languages[0],
+  activePopup: '',
   data: {},
-  slides: [],
   currentSlide: {},
   currentFlow: [],
-  activePopup: ''
+  slides: []
+};
+
+const getters = {
+  currentData: state => {
+    return state.data[state.currentLang] || dataTemplate
+  }
 };
 
 const mutations = {
-  SET_LANG(state, lang) {
+  SET_CURRENT_LANG(state, lang) {
     if (state.languages.indexOf(lang) === -1 && process.env.NODE_ENV === 'development') {
       console.warn(`Not find lang: "${lang}" in project languages: "${state.languages}"`)
     } else {
-      state.currentLang= lang;
+      state.currentLang = lang;
       sessionStorage.setItem('clm-language', lang)
     }
   },
@@ -51,15 +58,15 @@ const mutations = {
 };
 
 const actions = {
-  async init({commit}, currentSlideId) {
+  async init({commit}, {currentSlideId}) {
     const structure = new StructureParser(currentSlideId);
-    // const data = {};
-    //
-    // for (let lang of languages) {
-    //     data[lang] = await import(`@/${structure.currentSlide.path}/data_${lang}`)
-    // }
-    //
-    // commit('SET_DATA', data);
+    const data = {};
+
+    for (let lang of languages) {
+      data[lang] = await import(`@/${structure.currentSlide.path}/data_${lang}`)
+    }
+
+    commit('SET_DATA', data);
     commit('SET_ALL_SLIDES', structure.slides);
     commit('SET_CURRENT_SLIDE', structure.currentSlide);
     commit('SET_CURRENT_FLOW', structure.currentFlow);
@@ -69,6 +76,7 @@ const actions = {
 
 export default new Vuex.Store({
   state,
+  getters,
   mutations,
   actions,
   strict: process.env.NODE_ENV !== 'production',

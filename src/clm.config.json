@@ -1,0 +1,124 @@
+{
+  "idPattern": "DYSP_FOCAL_C1_18",
+  "size": {
+    "width": "2048",
+    "height": "1536"
+  },
+  "languages": ["ru", "ua"],
+  "structure": [
+    {
+      "id": "slide-main",
+      "path": "slides/slide-main"
+    },
+
+
+    {
+      "id": "slide-1_1",
+      "flowName": { "ua": "", "ru": "портрет пациента"},
+      "path": "slides/flow-1/slide-1_1"
+    },
+    {
+      "id": "slide-1_2",
+      "path": "slides/flow-1/slide-1_2"
+    },
+    {
+      "id": "slide-1_3",
+      "path": "slides/flow-1/slide-1_3"
+    },
+    {
+      "id": "slide-1_4",
+      "path": "slides/flow-1/slide-1_4"
+    },
+
+
+    {
+      "flowName": { "ua": "", "ru": "механизм действия"},
+      "id": "slide-2_1",
+      "path": "slides/flow-2/slide-2_1"
+    },
+    {
+      "id": "slide-2_2",
+      "path": "slides/flow-1/slide-2_2"
+    },
+
+
+    {
+      "flowName": { "ua": "", "ru": "преимусчества"},
+      "id": "slide-3_1",
+      "path": "slides/flow-3/slide-3_1"
+    },
+    {
+      "id": "slide-3_2",
+      "path": "slides/flow-3/slide-3_2"
+    },
+    {
+      "id": "slide-3_3",
+      "path": "slides/flow-3/slide-3_3"
+    },
+    {
+      "id": "slide-3_4",
+      "path": "slides/flow-3/slide-3_4"
+    },
+    {
+      "id": "slide-3_5",
+      "path": "slides/flow-3/slide-3_5"
+    },
+
+
+    {
+      "flowName": { "ua": "", "ru": "стандарты лечения"},
+      "id": "slide-4_1",
+      "path": "slides/flow-4/slide-4_1"
+    },
+
+
+    {
+      "flowName": { "ua": "", "ru": "области применения"},
+      "id": "slide-5_1",
+      "path": "slides/flow-5/slide-5_1"
+    },
+    {
+      "id": "slide-5_2",
+      "path": "slides/flow-5/slide-5_2"
+    },
+    {
+      "id": "slide-5_3",
+      "path": "slides/flow-5/slide-5_3"
+    },
+    {
+      "id": "slide-5_4",
+      "path": "slides/flow-5/slide-5_4"
+    },
+    {
+      "id": "slide-5_5",
+      "path": "slides/flow-5/slide-5_5"
+    },
+    {
+      "id": "slide-5_6",
+      "path": "slides/flow-5/slide-5_6"
+    },
+    {
+      "id": "slide-5_7",
+      "path": "slides/flow-5/slide-5_7"
+    },
+    {
+      "id": "slide-5_8",
+      "path": "slides/flow-5/slide-5_8"
+    },
+    {
+      "id": "slide-5_9",
+      "path": "slides/flow-5/slide-5_9"
+    },
+    {
+      "id": "slide-5_10",
+      "path": "slides/flow-5/slide-5_10"
+    },
+
+
+    {
+      "flowName": { "ua": "", "ru": "литература"},
+      "id": "slide-6_1",
+      "path": "slides/flow-6/slide-6_1"
+    }
+  ]
+}
