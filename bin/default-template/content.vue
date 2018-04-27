@@ -1,7 +1,7 @@
 <template>
-  <div id="content">
+  <div id="content" v-if="isReady">
     <div class="logo-dysport"/>
-    <div class="logo-ipsen"/>
+
   </div>
 </template>
 

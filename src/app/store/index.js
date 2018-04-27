@@ -7,9 +7,11 @@ import dataTemplate from '../../../bin/default-template/data'
 Vue.use(Vuex);
 
 const state = {
+  isReady: false,
   languages,
   currentLang: sessionStorage.getItem('clm-lang') || languages[0],
   activePopup: '',
+  activeVideo: '',
   data: {},
   currentSlide: {},
   currentFlow: [],
@@ -23,6 +25,9 @@ const getters = {
 };
 
 const mutations = {
+  SET_READY(state) {
+    state.isReady = true
+  },
   SET_CURRENT_LANG(state, lang) {
     if (state.languages.indexOf(lang) === -1 && process.env.NODE_ENV === 'development') {
       console.warn(`Not find lang: "${lang}" in project languages: "${state.languages}"`)
@@ -48,6 +53,14 @@ const mutations = {
     state.currentFlow = currentFlow;
   },
 
+  VIDEO_PLAY(state, src) {
+    state.activeVideo = src;
+  },
+
+  VIDEO_CLOSE(state) {
+    state.activeVideo = ''
+  },
+
   POPUP_SHOW(state, popupName) {
     state.activePopup = popupName;
   },
@@ -70,6 +83,7 @@ const actions = {
     commit('SET_ALL_SLIDES', structure.slides);
     commit('SET_CURRENT_SLIDE', structure.currentSlide);
     commit('SET_CURRENT_FLOW', structure.currentFlow);
+    commit('SET_READY');
   }
 };
 

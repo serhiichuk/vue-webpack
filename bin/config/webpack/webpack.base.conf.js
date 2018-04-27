@@ -45,8 +45,8 @@ module.exports = {
         options: {
           limit: 10000,
           context: 'src/assets',
-          name: utils.assetsPath('[path]/[name].[hash:7].[ext]'),
-          publicPath: process.env.NODE_ENV === 'production' ? '../' : '/'
+          name: utils.assetsPath('[path]/[name].[ext]'),
+          publicPath: process.env.NODE_ENV === 'production' ? '../' : './'
         }
       },
       {
@@ -67,7 +67,7 @@ module.exports = {
         options: {
           limit: 10000,
           context: 'src/assets',
-          name: utils.assetsPath('[path]/[name].[hash:7].[ext]'),
+          name: utils.assetsPath('[path]/[name].[ext]'),
         }
       },
       {
@@ -77,7 +77,7 @@ module.exports = {
           limit: 10000,
           context: 'src/assets',
           name: utils.assetsPath('[path]/[name].[ext]'),
-          publicPath: process.env.NODE_ENV === 'production' ? '../' : '/'
+          publicPath: process.env.NODE_ENV === 'production' ? '../' : './'
         }
       }
     ]

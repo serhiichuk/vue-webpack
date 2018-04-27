@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 process.env.NODE_ENV = 'production';
 
-const config = require('../config');
-const help = require('../utils/help');
-const screensMaker = require('../utils/screens-maker');
+const ora = require('ora');
+const help = require('../lib/help');
 
 /**
  * Parse command options
@@ -41,10 +40,14 @@ if (!isOptionsContainKeyFromClmSystems) return help(commands, options);
  */
 
 (async function () {
-  if (!options['no-screens']) await screensMaker();
-  if (options['pharma-touch']) await require('./build-pharma-touch')();
-  if (options['mi-touch']) await require('./build-mi-touch')();
-  if (options['veeva']) await require('./build-veeva')();
+  let spinner = ora()
+    .start('Starting building...');
 
-  process.exit(0);
+  if (!options['no-screens']) await require('../lib/screens-maker')(spinner);
+  if (options['pharma-touch']) await require('./build-pharma-touch')(spinner, options);
+  if (options['mi-touch']) await require('./build-mi-touch')(spinner, options);
+  if (options['veeva']) await require('./build-veeva')(spinner, options);
+
+  spinner.succeed('Building complete');
+  // process.exit(0);
 })();

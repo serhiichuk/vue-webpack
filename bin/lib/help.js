@@ -14,7 +14,7 @@ module.exports = (commands) => {
 
   console.log('\x1Bc');
   if (Object.keys(commands).length) {
-    console.log(chalk.red('[Error in]:'), process.argv[1]);
+    console.log(chalk.red('[Error in]:'), process.argv);
     console.log('Read info bellow.');
   }
 

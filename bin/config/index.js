@@ -18,7 +18,7 @@ const paths = {
     dev: path.join(root, 'bin', 'config', 'webpack', 'webpack.dev.conf'),
     prod: path.join(root, 'bin', 'config', 'webpack', 'webpack.prod.conf'),
   },
-  zip: path.join(root, 'dist', 'zip')
+  zip: path.join(root, '..', 'ZIP'),
 };
 
 const dev = {
