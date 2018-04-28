@@ -124,8 +124,8 @@
 </script>
 
 <style lang="scss" scoped>
-  $top: 5%;
-  $bottom: 2.5%;
+  $top: 1.5em;
+  $bottom: 1em;
   $slide-list-width: 70%;
   $modal-width: 70%;
   $modal-height: 70%;
@@ -135,9 +135,22 @@
   $color-dev-accent-3: #fafafa;
   $color-dev-red: #ff4242;
 
-  * {
-    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  #development-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+
+    width: 100%;
+    height: 100%;
+
+    color: $color-dev-accent-2;
+
+    font: 400 calc(100vw / 1920 * 40)/1.33 "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+
+    -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .btn {
@@ -152,25 +165,27 @@
     background-repeat: no-repeat;
 
     &.active, &:hover {
-      box-shadow: inset 0 0 5em -1em $color-dev-accent-1;
+      box-shadow: inset 0 0 6em -1em $color-dev-accent-1;
     }
 
     &:active {
-      box-shadow: inset 0 0 5em -2em $color-dev-accent-2;
+      opacity: .8;
     }
   }
 
   .btn-close {
     position: absolute;
-    right: 1em;
-    top: 1em;
+    right: .75em;
+    top: .75em;
 
-    width: 2em;
-    height: 2em;
+    width: 1.8em;
+    height: 1.8em;
 
     border-radius: .2em;
 
     background-color: $color-dev-red;
+
+
 
     &:before {
       content: '+';
@@ -189,18 +204,6 @@
     &:active {
       box-shadow: inset 0 0 5em -1em lighten($color-dev-red, 20%);
     }
-  }
-
-  #development-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10000;
-
-    width: 100%;
-    height: 100%;
-
-    color: $color-dev-accent-2;
   }
 
   header, footer {
@@ -294,6 +297,23 @@
         }
       }
     }
+
+    // Scroll bar Styles
+    &::-webkit-scrollbar {
+      width: .15rem;
+
+      &-track {
+        background: $color-dev-accent-3;
+      }
+
+      &-thumb {
+        background: rgba($color-dev-accent-2, .5);
+
+        &:hover {
+          background: rgba($color-dev-accent-2, .8);
+        }
+      }
+    }
   }
 
   .sidebar {
@@ -356,8 +376,7 @@
   }
 
   .external-data {
-    /*padding: 1em 2em;*/
-    width: 50%;
+    width: calc(100vh * 0.6);
     height: auto;
 
     display: flex;
@@ -368,29 +387,39 @@
     background-color: #fff;
 
     &-qr-code {
-      width: auto;
-      height: auto;
+      width: 85%;
+
+      /deep/ svg {
+        margin: 0 auto;
+        width: 100%;
+        height: auto;
+      }
     }
 
     &-link {
       margin-top: -1em;
+      max-width: 90%;
 
       display: flex;
-      justify-content: space-around;
       align-items: center;
+      justify-content: space-around;
+
       border: 1px solid $color-dev-accent-2;
       border-radius: .5em;
 
       > input {
-        font-size: 1em;
         margin: 0 .5em;
         border: none;
+        font-size: .85em;
       }
 
       > div {
         position: relative;
         z-index: 2;
         padding-left: .5em;
+
+        height: 1.8em;
+        width: 1.8em;
 
         .tooltiptext {
           position: absolute;
@@ -404,6 +433,7 @@
 
           color: #fff;
           text-align: center;
+          font-size: .75em;
 
           background-color: $color-dev-accent-2;
           border-radius: 6px;
@@ -437,7 +467,7 @@
       width: 50%;
       margin: 1em;
 
-      font-size: .75em;
+      font-size: .65em;
       text-align: center;
     }
   }
