@@ -11,7 +11,7 @@ const state = {
   languages,
   currentLang: sessionStorage.getItem('clm-lang') || languages[0],
   activePopup: '',
-  activeVideo: '',
+  // activeVideo: '',
   data: {},
   currentSlide: {},
   currentFlow: [],
@@ -53,13 +53,13 @@ const mutations = {
     state.currentFlow = currentFlow;
   },
 
-  VIDEO_PLAY(state, src) {
-    state.activeVideo = src;
-  },
-
-  VIDEO_CLOSE(state) {
-    state.activeVideo = ''
-  },
+  // VIDEO_PLAY(state, src) {
+  //   state.activeVideo = src;
+  // },
+  //
+  // VIDEO_CLOSE(state) {
+  //   state.activeVideo = ''
+  // },
 
   POPUP_SHOW(state, popupName) {
     state.activePopup = popupName;

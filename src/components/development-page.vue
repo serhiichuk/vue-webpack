@@ -1,9 +1,11 @@
 <template>
   <section id="development-page">
+    <!-- Header -->
     <header>
       <h1 class="dev-title">Development Page</h1>
     </header>
 
+    <!-- Slides -->
     <section class="slides">
       <div class="slides-legend">
         <i class="col col-1">#</i>
@@ -20,26 +22,31 @@
       </div>
     </section>
 
+    <!-- Right Sidebar -->
     <aside class="sidebar">
-      <section>
+      <p class="sidebar-tablet-alert" v-if="!isFullFunctional">Some Functions disabled on tablet or mobile.</p>
+
+      <section v-if="isFullFunctional">
         <div class="description">Show external QR-code link</div>
         <div class="btn icon-external-data-open"
              :class="{active: activeModal === 'external-data-link'}"
              @click="openModal('external-data-link')"
         ></div>
-      </section><hr>
+      </section>
 
       <section>
         <div class="description">Coming soon...</div>
-      </section><hr>
+      </section>
+
     </aside>
 
+
+    <!-- Footer -->
     <footer>
       <h5>Created by <b>Taras Serhiichuk</b></h5>
     </footer>
 
     <!-- Modal Sections -->
-
     <section class="modal external-data"
              :class="{active: activeModal === 'external-data-link'}">
       <div class="btn-close" @click="closeModal"></div>
@@ -60,9 +67,9 @@
 </template>
 
 <script>
-  import {languages, structure} from '@/clm.config'
-  import getLocalIP from '../app/utils/get-local-ip';
   import qrcode from 'qrcode-generator'
+  import {languages, structure} from '@/clm.config'
+  import {getLocalIP} from '@/app/utils/get-system-info'
 
   export default {
     data() {
@@ -77,6 +84,12 @@
       }
     },
 
+    computed: {
+      isFullFunctional() {
+        return !!this.externalData.link
+      }
+    },
+
     methods: {
       copyTextToClipboard() {
         const copyText = document.getElementById('external-link');
@@ -85,10 +98,6 @@
         copyText.select();
         document.execCommand("Copy");
         tooltip.innerHTML = "Copied: " + copyText.value;
-
-        // setTimeout(() => {
-        //   tooltip.innerHTML = "Copy to clipboard";
-        // }, 2000)
       },
 
       resetTooltip() {
@@ -109,7 +118,6 @@
       getLocalIP().then(ip => {
         const port = /\:\d{4,6}/.exec(window.location.href); //=> :8080
         const externalHref = `http://${ip}${port}`;
-
         const typeNumber = 0;
         const errorCorrectionLevel = 'L';
         const qr = qrcode(typeNumber, errorCorrectionLevel);
@@ -159,10 +167,10 @@
 
     border-radius: .2em;
 
-    box-shadow: inset 0 0 5em -2em $color-dev-accent-2;
     background-size: 70%;
     background-position: center;
     background-repeat: no-repeat;
+    box-shadow: inset 0 0 5em -2em $color-dev-accent-2;
 
     &.active, &:hover {
       box-shadow: inset 0 0 6em -1em $color-dev-accent-1;
@@ -182,27 +190,37 @@
     height: 1.8em;
 
     border-radius: .2em;
-
     background-color: $color-dev-red;
 
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: - 2.5%;
+      margin-top: -25%;
+      transform-origin: center;
 
+      width: 5%;
+      height: 50%;
+
+      background-color: #fff;
+    }
 
     &:before {
-      content: '+';
-      @include transformCentered;
-      transform: translate(-50%, -50%) rotate(-45deg);
+      transform: rotate(-45deg);
+    }
 
-      font-weight: bold;
-      font-size: 2em;
-      color: $color-dev-accent-3;
+    &:after {
+      transform: rotate(45deg);
+    }
+
+    &:active {
+      box-shadow: inset 0 0 5em -1em darken($color-dev-red, 50%);
     }
 
     &:hover {
       box-shadow: inset 0 0 5em -1em lighten($color-dev-red, 10%);
-    }
-
-    &:active {
-      box-shadow: inset 0 0 5em -1em lighten($color-dev-red, 20%);
     }
   }
 
@@ -267,13 +285,13 @@
         width: 5%;
         text-align: right;
       }
+
       &-2 {
         width: 20%;
       }
+
       &-3 {
         font-weight: 300;
-
-        /*flex-basis: 65%;*/
       }
     }
 
@@ -327,12 +345,21 @@
 
     background-color: rgba($color-dev-accent-2, .1);
 
-    section {
+    &-tablet-alert {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    > section {
       padding: 0 1em;
+      padding-bottom: .5em;
+      margin-bottom: .5em;
 
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      border-bottom: solid 1px $color-dev-accent-2;
 
       .description {
         width: 50%;
