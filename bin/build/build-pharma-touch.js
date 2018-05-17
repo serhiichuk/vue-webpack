@@ -11,16 +11,15 @@ const webpackSlideBuild = require('../lib/webpack-slide-builder');
 
 module.exports = (spinner, options) => {
   return new Promise(resolve => {
-    const params = {};
+    let iterator = 0;
 
     (async () => {
 
       for (let slide of clmConfig.structure) {
-        // const params = {};
+        const params = {};
 
         params.clm = 'pharma-touch';
         params.slideName = slide.id;
-
         params.env = {
           CLM_NAME: params.clm,
           BUILD_PATH: slide.path,
@@ -37,24 +36,25 @@ module.exports = (spinner, options) => {
           file: {path: params.env.SLIDE_PATH, name: `${params.slideName}.jpg`}
         });
 
+        iterator++;
+
+        if (iterator === clmConfig.structure.length) {
+          /** Create structure.json **/
+          createStructureForPT();
+
+          /** Create Archive **/
+          await archiveMaker(spinner, params, {
+            archiveName: clmConfig.idPattern,
+            contentPath: path.join(config.build.assetsRoot, 'pharma-touch'),
+            clmName: 'pharma-touch',
+            archiveSubDir: false
+          });
+
+          // spinner.warn('For PharmaTouch you must create ZIP\'s manually, because now programmally it\'s impossible.');
+          /** Build Complete **/
+          resolve()
+        }
       }
-
-      /** Create structure.json **/
-      createStructureForPT();
-
-
-
-      /** Create Archive **/
-      // await archiveMaker(spinner, params, {
-      //   archiveName: clmConfig.idPattern,
-      //   contentPath: path.join(config.build.assetsRoot, 'pharma-touch'),
-      //   clmName: 'pharma-touch',
-      //   archiveSubDir: false
-      // });
-      spinner.warn('For PharmaTouch you must create ZIP\'s manually, because now programmally it\'s impossible.');
-
-      /** Build Complete **/
-      resolve()
     })();
   })
 };
@@ -84,17 +84,17 @@ function createStructureForPT() {
 function getTransitName(name) {
   if (typeof name === 'string') {
     const preset = clmConfig.languages[0] === 'ua' ? 'uk' : 'ru';
-    return cyrillicToTransit({ preset }).transform(name)
+    return cyrillicToTransit({preset}).transform(name)
   } else {
     switch (true) {
       case !!name.ru:
-      return cyrillicToTransit().transform(name.ru);
+        return cyrillicToTransit().transform(name.ru);
 
       case !!name.ua:
-      return cyrillicToTransit({ preset: "uk" }).transform(name.ua);
+        return cyrillicToTransit({preset: "uk"}).transform(name.ua);
 
       default:
-      return cyrillicToTransit().transform(name[Object.keys(name)[0]])
+        return cyrillicToTransit().transform(name[Object.keys(name)[0]])
     }
   }
 }
