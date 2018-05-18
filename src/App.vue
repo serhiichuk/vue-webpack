@@ -1,22 +1,13 @@
 <template>
   <div id="app">
     <router-view/>
-    <menu-dysport/>
-    <popup-info/>
-    <video-wrapper/>
   </div>
 </template>
 
 <script>
-  import MenuDysport from '@/layouts/menu/menu-dysport'
-  import PopupInfo from '@/layouts/popup/popup-info'
-  import VideoWrapper from '@/components/video-wrapper'
 
   export default {
     components: {
-      MenuDysport,
-      PopupInfo,
-      VideoWrapper
     }
   }
 

@@ -8,11 +8,12 @@ const help = require('../lib/help');
 const clmConfig = require(config.paths.clmConfig);
 
 const rootDirName = config.paths.root.split(path.sep).pop();
-if (rootDirName !== 'HTML') {
-  console.log(chalk.red.bold(`Wrong root folder name: "${rootDirName}"`));
-  console.log(chalk.green.bold(`Name must be: "HTML"!`));
-  process.exit(0);
-}
+
+// if (rootDirName !== 'HTML') {
+//   console.log(chalk.red.bold(`Wrong root folder name: "${rootDirName}"`));
+//   console.log(chalk.green.bold(`Name must be: "HTML"!`));
+//   process.exit(0);
+// }
 
 if (process.argv.length > 3) {
   const err = `Invalid options: ${chalk.red(process.argv.slice(2).join(' '))} in command:${chalk.cyan(process.title)}`;
