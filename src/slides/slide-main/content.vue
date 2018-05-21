@@ -1,6 +1,6 @@
 <template>
   <div id="content" v-if="isReady">
-    <JsonToDom :json="t" :bem="true"/>
+    <JsonToDom :json="t" rootClassName="bubs" rootTagName="SectIon"/>
 
   </div>
 </template>
